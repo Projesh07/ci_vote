@@ -1,4 +1,69 @@
 <style>
+
+.content{
+    margin-top:200px;
+    margin-bottom:200px;
+}
+
+.main-content{
+    z-index:-1;
+    /*margin-top:20px;*/
+    background: white;
+    position:relative;
+    display:inline-flex;
+    width: 100%;  
+    height:65px;
+    box-shadow: 11px 5px 15px black;
+    
+
+}
+.progress-bar{
+    height:65px;
+    background:gray;
+    background:linear-gradient(to bottom left, rgb(34, 34, 35), rgb(212, 212, 216));
+    width:300px;   
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+.img-content{
+    border-radius: 50%;
+    position: absolute;
+    width:73px;
+    height:73px;
+    left:60px;
+    top: -2px;
+}
+.serial-no{
+    position: absolute;
+    font-weight:bold;
+    font-size: 21px;
+    padding: 18px;
+    left:5px;
+    color:white;
+}
+
+.percentage{
+    position: absolute;
+    right: 60px;
+    top: 20px;
+    font-size: 18px;
+}
+.selected{
+    transform: scale(1.02,1);
+}
+.selected-p-var{
+   background: linear-gradient(rgb(244, 179, 66),rgb(170, 186, 81));
+}
+.btn-voting{
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    height: 65px;
+    margin-top: 20px;
+    padding: 0px;
+    /*background: white;*/
+    background-color:transparent;
+    border: none;
+}
     /* vote */
     .box-vote {
         background: #fafafa;
@@ -39,6 +104,12 @@
 
 progress {
   text-align: center;
+     height:65px;
+    background:gray;
+    background:linear-gradient(to bottom left, rgb(34, 34, 35), rgb(212, 212, 216));
+    width:300px;   
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+    background: linear-gradient(rgb(244, 179, 66),rgb(170, 186, 81));
 }
 progress:after {
   content: attr(value)'%';
@@ -121,11 +192,14 @@ progress:after {
 
 
 
- setInterval(realtime, 1000);//time in milliseconds 
+ // setInterval(realtime, 1000);//time in milliseconds 
 
     })
 </script>
 <!-- Vote Start -->
+
+
+
         <?php 
         if($columns !=null){?>
         <?= form_open_multipart('voting/voted/'.$vote->dv_id, array('id' => 'voting_categories'))?>
@@ -143,12 +217,24 @@ progress:after {
                     
                  if($key=='candidate_name'):
                 ?>
-            <div class="radio">
+<!--             <div class="radio">
                 <label class="voting_blog">
                 <input name="v_column" type="radio" value="<?= $value ?>" checked="checked" >
                 <?= $value ?> <span> <progress max="100" value="26" id="value<?= preg_replace("/\s+/","",$value)?>"></progress><br/></span>
                 </label>
             </div>
+ -->
+
+          <button class="btn-voting selected" id="b<?= preg_replace("/\s+/","",$value)?>">
+              <div class="main-content">
+                  <!-- <div class="progress-bar selected-p-var" style="width:90%;"></div> -->
+                  <progress max="100" value="26" id="value<?= preg_replace("/\s+/","",$value)?> %"></progress>
+                  <div class="serial-no">1</div> <div><img class="img-content" src="demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
+                  <div class="percentage">90%</div>
+              </div>
+          </button>
+
+
                <?php endif; ?>
               <?php  endforeach;  ?>
            
