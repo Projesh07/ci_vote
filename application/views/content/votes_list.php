@@ -59,9 +59,9 @@
                                             height="16" title="remove" alt="remove"/></a>
                                     &nbsp;&nbsp; | &nbsp;&nbsp;
                                     <?php if ($cat['dv_state'] == 0): ?>
-                                        <a href="<?= base_url() ?>admin_voting/activate_vote/<?= $cat['dv_id']; ?>"><img src="<?= base_url() ?>global/admin/images/tick-circle.gif" width="16" height="16"  title="<?php echo $this->lang->line('act'); ?>" alt="خيارات النشر" /></a>
+                                        <a href="<?= base_url() ?>admin_voting/activate_vote/<?= $cat['dv_id']; ?>"><img src="<?= base_url() ?>global/admin/images/tick-circle.gif" width="16" height="16"  title="<?php echo $this->lang->line('act'); ?>" alt="Image not found" /></a>
                                     <?php else : ?>
-                                        <a href="<?= base_url() ?>admin_voting/deactivate_vote/<?= $cat['dv_id']; ?>"><img src="<?= base_url() ?>global/admin/images/minus-circle.gif" width="16" height="16" title="<?php echo $this->lang->line('inact'); ?>" alt="خيارات النشر النشر" /></a>
+                                        <a href="<?= base_url() ?>admin_voting/deactivate_vote/<?= $cat['dv_id']; ?>"><img src="<?= base_url() ?>global/admin/images/minus-circle.gif" width="16" height="16" title="<?php echo $this->lang->line('inact'); ?>" alt="Image not found" /></a>
                                     <?php endif; ?>
                                 </td>
 

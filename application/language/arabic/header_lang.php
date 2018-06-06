@@ -1,12 +1,12 @@
 <?php
 
-$lang['pages']    = "الصفحات الإضافية";
-$lang['contactus']    = "اتصل بنا";
-$lang['contactus'] = 'إدارة الرسائل';
-$lang['my_account'] = 'حسابى';
-$lang['home'] = 'الرئيسية';
-$lang['modify_my_info'] = ' تعديل بيناتى';
-$lang['logout'] = 'تسجيل الخروج';
-$lang['welcome'] = 'مرحبا بك يا';
-$lang['currency'] =  "ريال سعودى";
-$lang['manage_back_end'] = "لوحة التحكم";
+$lang['pages']    = "pages";
+$lang['contactus']    = "contactus";
+$lang['contactus'] = 'contactus';
+$lang['my_account'] = 'my_account';
+$lang['home'] = 'home';
+$lang['modify_my_info'] = 'modify_my_info';
+$lang['logout'] = 'logout';
+$lang['welcome'] = 'welcome';
+$lang['currency'] =  "currency";
+$lang['manage_back_end'] = "manage_back_end";
