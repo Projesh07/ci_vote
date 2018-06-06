@@ -37,6 +37,13 @@
         margin-top: 10px;
     }
 
+progress {
+  text-align: center;
+}
+progress:after {
+  content: attr(value)'%';
+}
+
     /* footer */
 </style>
 <script type="text/javascript">
@@ -68,7 +75,7 @@
 
                         console.log(id+" id");
 
-                        $("#"+id).html( " vote counted -"+data[key].v_value);
+                        $("#"+id).val(data[key].v_value);
 
                             // $('#days').append('<li>' + key + '(' + days[key] + ')</li>');
                         }
@@ -103,7 +110,7 @@
 
                         console.log(id+" id");
 
-                        $("#"+id).html( " vote counted -"+data[key].v_value);
+                        $("#"+id).val(data[key].v_value);
 
                         }
 
@@ -114,7 +121,7 @@
 
 
 
-setInterval(realtime, 1000);//time in milliseconds 
+ setInterval(realtime, 1000);//time in milliseconds 
 
     })
 </script>
@@ -139,7 +146,7 @@ setInterval(realtime, 1000);//time in milliseconds
             <div class="radio">
                 <label class="voting_blog">
                 <input name="v_column" type="radio" value="<?= $value ?>" checked="checked" >
-                <?= $value ?> <span id="value<?= preg_replace("/\s+/","",$value)?>"> vote-counted-</span>
+                <?= $value ?> <span> <progress max="100" value="26" id="value<?= preg_replace("/\s+/","",$value)?>"></progress><br/></span>
                 </label>
             </div>
                <?php endif; ?>

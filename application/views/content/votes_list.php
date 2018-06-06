@@ -2,9 +2,9 @@
 <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-            <li class="active"><a class="btn btn-primary" href="<?= base_url() ?>admin_voting/create">Add Vote</a></li>
-            <li><a class="btn btn-success" href="<?= base_url() ?>admin_voting">Vote lists</a></li>
-            <li><a class="btn btn-info" href="<?= base_url() ?>voting">Show Votes</a></li>
+            <li class="active"><a style="width: 100%" class="btn btn-primary" href="<?= base_url() ?>admin_voting/create">Add Vote</a></li>
+            <li><a style="width: 100%" class="btn btn-success" href="<?= base_url() ?>admin_voting">Vote lists</a></li>
+            <li><a style="width: 100%" class="btn btn-info" href="<?= base_url() ?>voting">Show Votes</a></li>
         </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

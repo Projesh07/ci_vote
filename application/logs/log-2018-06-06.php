@@ -348,3 +348,26 @@ ERROR - 2018-06-06 10:29:01 --> Severity: Notice --> Trying to get property of n
 ERROR - 2018-06-06 10:29:18 --> Severity: Notice --> Array to string conversion F:\xampp\htdocs\codeigniter-voting-master\application\views\content\vote_page.php 138
 ERROR - 2018-06-06 10:29:18 --> Severity: Notice --> Array to string conversion F:\xampp\htdocs\codeigniter-voting-master\application\views\content\vote_page.php 138
 ERROR - 2018-06-06 10:33:58 --> Severity: error --> Exception: syntax error, unexpected '?>' F:\xampp\htdocs\codeigniter-voting-master\application\views\content\vote_page.php 138
+DEBUG - 2018-06-06 13:36:03 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:38:12 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:40:04 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:40:24 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:43:21 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:43:53 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:45:08 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:45:17 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:46:23 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:47:05 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:50:59 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:51:21 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:51:43 --> No URI present. Default controller set.
+DEBUG - 2018-06-06 13:52:27 --> No URI present. Default controller set.
+ERROR - 2018-06-06 14:00:52 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:00:55 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:03:31 --> Could not find the language line "act"
+ERROR - 2018-06-06 14:03:35 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:04:01 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:04:02 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:04:24 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:07:39 --> Could not find the language line "inact"
+ERROR - 2018-06-06 14:12:09 --> Could not find the language line "inact"
