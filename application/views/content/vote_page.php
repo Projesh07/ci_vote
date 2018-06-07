@@ -104,12 +104,12 @@
 
 progress {
   text-align: center;
-     height:65px;
+/*     height:65px;
     background:gray;
     background:linear-gradient(to bottom left, rgb(34, 34, 35), rgb(212, 212, 216));
     width:300px;   
     clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-    background: linear-gradient(rgb(244, 179, 66),rgb(170, 186, 81));
+    background: linear-gradient(rgb(244, 179, 66),rgb(170, 186, 81));*/
 }
 progress:after {
   content: attr(value)'%';
@@ -121,14 +121,16 @@ progress:after {
 
     $(document).ready(function () {
 
-        $(".contentPost").delay(1000).fadeIn(100);
+        
 
 
-        $("#voting_categories").submit(function () {
+        $(".selected").click(function () {
 
             var dvId = $("#dv_id").val();
-            var v_column = $('input[name="v_column"]:checked').val();
-            var v_data = $('input[name="v_data"]').val();
+            //var v_column = $('input[name="v_column"]:checked').val();
+            var v_column = $(this).data('value');
+           // var v_data = $('input[name="v_data"]').val();
+            var v_data = $(this).data('column');
             var sendData = {"v_column": v_column,"v_data": v_data};
 
             $.ajax({
@@ -139,14 +141,17 @@ progress:after {
                    
                     var data=JSON.parse(data);
                      console.log(data);
-                     for(var key in data){
+                     for(var key in data.data){
                        
-                        str=data[key].v_column;
+                        str=data.data[key].v_column;
                         id="value"+str.replace(' ', '')
 
                         console.log(id+" id");
 
-                        $("#"+id).val(data[key].v_value);
+                        $("#"+id).width(data.data[key].data_percentage);
+                         divid="percentage-"+str.replace(' ', '')
+                        $("#"+divid).html(data.data[key].data_percentage);
+                        // $("#mainTable").css("width", "100%");
 
                             // $('#days').append('<li>' + key + '(' + days[key] + ')</li>');
                         }
@@ -174,14 +179,19 @@ progress:after {
                 success: function (data) {
                    
                     var data=JSON.parse(data);
-                     for(var key in data){
+                    console.log(data.data);
+                     for(var key in data.data){
                        
-                        str=data[key].v_column;
+                        str=data.data[key].v_column;
                         id="value"+str.replace(' ', '')
 
-                        console.log(id+" id");
+                        divid="percentage-"+str.replace(' ', '')
 
-                        $("#"+id).val(data[key].v_value);
+                        // console.log(id+" id");
+
+                        // $("#"+id).val(data[key].v_value);
+                        $("#"+id).width(data.data[key].data_percentage);
+                        $("#"+divid).html(data.data[key].data_percentage);
 
                         }
 
@@ -191,8 +201,10 @@ progress:after {
  }
 
 
+$(".contentPost").delay(1000).fadeIn(100);
 
- // setInterval(realtime, 1000);//time in milliseconds 
+
+  setInterval(realtime, 1000);//time in milliseconds 
 
     })
 </script>
@@ -204,7 +216,7 @@ progress:after {
         if($columns !=null){?>
         <?= form_open_multipart('voting/voted/'.$vote->dv_id, array('id' => 'voting_categories'))?>
 
-        <div  class="col-md-4 margin-top-30 contentPost" style="display: none;">
+        <div  class="col-md-12 margin-top-30 contentPost" style="display: none;">
             <div id="box-vote" class="box-vote">
 
                 <div class="box-vote-head"><?= $vote->dv_title?></div>
@@ -225,12 +237,11 @@ progress:after {
             </div>
  -->
 
-          <button class="btn-voting selected" id="b<?= preg_replace("/\s+/","",$value)?>">
+          <button class="btn-voting selected" id="b<?= preg_replace("/\s+/","",$value)?>" data-value="<?= $value ?>" data-column="<?= $value ?>">
               <div class="main-content">
-                  <!-- <div class="progress-bar selected-p-var" style="width:90%;"></div> -->
-                  <progress max="100" value="26" id="value<?= preg_replace("/\s+/","",$value)?> %"></progress>
+                  <div class="progress-bar selected-p-var" style="width:0%;" id="value<?= preg_replace("/\s+/","",$value)?>" ></div>
                   <div class="serial-no">1</div> <div><img class="img-content" src="demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
-                  <div class="percentage">90%</div>
+                  <div class="percentage" id="percentage-<?= preg_replace("/\s+/","",$value)?>">90%</div>
               </div>
           </button>
 
@@ -239,7 +250,7 @@ progress:after {
               <?php  endforeach;  ?>
            
               <?php  endforeach;  ?>
-              <button type="submit" name="votes"  class="btn btn-custom btn-block">Vote Now!</button>
+             <!--  <button type="submit" name="votes"  class="btn btn-custom btn-block">Vote Now!</button> -->
                 </div>
 
             </div>
