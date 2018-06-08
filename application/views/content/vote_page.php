@@ -38,7 +38,7 @@
     font-size: 21px;
     padding: 18px;
     left:5px;
-    color:white;
+    color:black;
 }
 
 .percentage{
@@ -124,7 +124,7 @@ progress:after {
         
 
 
-        $(".selected").click(function () {
+        $(".btn-voting").click(function () {
 
             var dvId = $("#dv_id").val();
             //var v_column = $('input[name="v_column"]:checked').val();
@@ -132,7 +132,7 @@ progress:after {
            // var v_data = $('input[name="v_data"]').val();
             var v_data = $(this).data('column');
             var sendData = {"v_column": v_column,"v_data": v_data};
-
+             var first=1
             $.ajax({
                 url: "<?= base_url(); ?>voting/voted/" + dvId,
                 type: "post",
@@ -141,23 +141,38 @@ progress:after {
                    
                     var data=JSON.parse(data);
                      console.log(data);
+                    
                      for(var key in data.data){
                        
                         str=data.data[key].v_column;
                         id="value"+str.replace(' ', '')
 
-                        console.log(id+" id");
+                        // console.log(id+" id");
 
                         $("#"+id).width(data.data[key].data_percentage);
                          divid="percentage-"+str.replace(' ', '')
                         $("#"+divid).html(data.data[key].data_percentage);
-                        // $("#mainTable").css("width", "100%");
 
-                            // $('#days').append('<li>' + key + '(' + days[key] + ')</li>');
+                        serialno='serial-no'+str.replace(' ', '')
+
+
+                        $("#"+serialno).html(data.data[key].v_value);
+
+                        btn='b'+str.replace(' ', '')
+
+                        btn2='b'+data.max[0].v_column.replace(' ', '')
+                        console.log(btn2);
+                            if(btn==btn2){
+                             btn='b'+str.replace(' ', '')
+                             $(".btn-voting").removeClass("selected");
+                             $("#"+btn).addClass("selected");
+                      
+
+                             // new_val=data.data[key].data_percentage;
                         }
-                    // $("#box-vote").fadeOut(1000);
-                    // $("#value").html()
-                    // $("#vote-results").html(data).delay(1000).fadeIn(1000);
+    
+                        }
+    
                 }
             });
 
@@ -171,7 +186,7 @@ progress:after {
  function realtime(){
 
             var dvId = $("#dv_id").val();
-
+            var first=1
             $.ajax({
                 url: "<?= base_url(); ?>voting/realtime_result/" + dvId,
                 type: "post",
@@ -186,13 +201,18 @@ progress:after {
                         id="value"+str.replace(' ', '')
 
                         divid="percentage-"+str.replace(' ', '')
-
-                        // console.log(id+" id");
-
-                        // $("#"+id).val(data[key].v_value);
                         $("#"+id).width(data.data[key].data_percentage);
                         $("#"+divid).html(data.data[key].data_percentage);
+                        serialno='serial-no'+data.data[key].v_column
+                        $("#"+serialno).html(data.data[key].v_value);
 
+                            if(first==1){
+                            btn='b'+data.data[key].v_column
+                             $(".btn-voting").removeClass("selected");
+                             $("#"+btn).addClass("selected");
+                             new_val=data.data[key].data_percentage;
+                             first=2
+                        }
                         }
 
                 }
@@ -204,7 +224,7 @@ progress:after {
 $(".contentPost").delay(1000).fadeIn(100);
 
 
-  setInterval(realtime, 1000);//time in milliseconds 
+  // setInterval(realtime, 1000);//time in milliseconds 
 
     })
 </script>
@@ -213,35 +233,45 @@ $(".contentPost").delay(1000).fadeIn(100);
 
 
         <?php 
+        // var_dump($columns);die;
         if($columns !=null){?>
-        <?= form_open_multipart('voting/voted/'.$vote->dv_id, array('id' => 'voting_categories'))?>
-
+ 
         <div  class="col-md-12 margin-top-30 contentPost" style="display: none;">
             <div id="box-vote" class="box-vote">
 
                 <div class="box-vote-head"><?= $vote->dv_title?></div>
                 <div class="box-vote-content">
                     <input type="hidden" id="dv_id" value="<?= $vote->dv_id; ?>"/>
-            <?php //var_dump($columns);  ?>
+            <?php  $first=1;  
+                    ?>
             <?php foreach($columns as $col): 
                  foreach($col as $key=>$value):
                     // var_dump($col['ci_votting_id']);
-                    
-                 if($key=='candidate_name'):
-                ?>
-<!--             <div class="radio">
-                <label class="voting_blog">
-                <input name="v_column" type="radio" value="<?= $value ?>" checked="checked" >
-                <?= $value ?> <span> <progress max="100" value="26" id="value<?= preg_replace("/\s+/","",$value)?>"></progress><br/></span>
-                </label>
-            </div>
- -->
 
-          <button class="btn-voting selected" id="b<?= preg_replace("/\s+/","",$value)?>" data-value="<?= $value ?>" data-column="<?= $value ?>">
+                 if($key=='candidate_name'):
+                     
+                 
+                    if($first==1):
+
+                        $selected='selected';
+                        $first=null;
+                     else:
+                          $selected='not';
+                        ?>
+
+                     <?php endif;  ?>
+
+          <button class="btn-voting <?=$selected?>" id="b<?= preg_replace("/\s+/","",$value)?>" data-value="<?= $value ?>" data-column="<?= $value ?>">
               <div class="main-content">
-                  <div class="progress-bar selected-p-var" style="width:0%;" id="value<?= preg_replace("/\s+/","",$value)?>" ></div>
-                  <div class="serial-no">1</div> <div><img class="img-content" src="demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
-                  <div class="percentage" id="percentage-<?= preg_replace("/\s+/","",$value)?>">90%</div>
+                  <div class="progress-bar <?= $selected ?>-p-var" style="width:0%;" id="value<?= preg_replace("/\s+/","",$value)?>" ></div>
+                  <div class="serial-no" id="serial-no<?= preg_replace("/\s+/","",$value)?>">
+                    <?php if(isset($col['v_value'])){
+                        echo  $col['v_value'];
+                    }
+                        else{
+                            echo 0;
+                        } ?></div> <div><img class="img-content" src="<?= base_url(); ?>global/assets/demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
+                  <div class="percentage" id="percentage-<?= preg_replace("/\s+/","",$value)?>">0%</div>
               </div>
           </button>
 
@@ -250,12 +280,11 @@ $(".contentPost").delay(1000).fadeIn(100);
               <?php  endforeach;  ?>
            
               <?php  endforeach;  ?>
-             <!--  <button type="submit" name="votes"  class="btn btn-custom btn-block">Vote Now!</button> -->
                 </div>
 
             </div>
         </div>
-        </form>
+  
     <?php }else{?> <p class="notice error">sorry,there no votes</p>  <?php } ?>
 <!-- Vote End -->
 

@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
-        var maxField = 10; //Input fields increment limitation
+        var maxField = 20; //Input fields increment limitation
         var addButton = $('.add_button'); //Add button selector
         var wrapper = $('.field_wrapper'); //Input field wrapper
         var fieldHTML = '<div><input type="text" name="fields[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field">' +

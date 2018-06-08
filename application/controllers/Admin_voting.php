@@ -17,6 +17,7 @@ class admin_voting extends Front_end
     public function index()
     {
         $this->votes_list();
+
     }
 
     /** 
@@ -122,6 +123,28 @@ class admin_voting extends Front_end
         $this->voting->deactivate($id);
         $this->session->set_flashdata('success_msg', '1 new category deactivated!');
         redirect('admin_voting/votes_list/');
+    }
+
+
+    function print_report(){
+
+
+// https://github.com/aiwmedia/HTML2PDF-CI
+$this->load->library('html2pdf');
+
+//Set folder to save PDF to
+$this->html2pdf->folder('./assets/pdfs/');
+
+//Set the filename to save/download as
+$this->html2pdf->filename('test.pdf');
+
+//Set the paper defaults
+$this->html2pdf->paper('a4', 'portrait');
+
+//Load html view
+$this->html2pdf->html('<h1>Some Title</h1><p>Some content in here</p>');
+$this->html2pdf->create('download');
+
     }
 
 
