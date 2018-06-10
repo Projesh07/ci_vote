@@ -495,3 +495,17 @@ ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
 ERROR - 2018-06-10 12:02:57 --> Could not find the language line "inact"
 DEBUG - 2018-06-10 12:03:05 --> No URI present. Default controller set.
 DEBUG - 2018-06-10 12:10:05 --> No URI present. Default controller set.
+ERROR - 2018-06-10 14:33:51 --> Severity: Notice --> Undefined variable: data F:\xampp\htdocs\codeigniter-voting-master\application\controllers\Admin_voting.php 195
+ERROR - 2018-06-10 14:42:04 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:43:14 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:44:55 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:45:13 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:46:39 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:46:42 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 14:47:29 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:47:45 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:47:50 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:52:13 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:52:15 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:53:22 --> Could not find the language line "sex"
+ERROR - 2018-06-10 14:53:24 --> Could not find the language line "sex"

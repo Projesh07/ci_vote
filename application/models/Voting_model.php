@@ -158,4 +158,20 @@ class Voting_model extends CI_Model
     }
 
 
+
+function register(){
+
+      // if(isset($_POST['submit'])){
+        
+        $sex=$_POST['sex'];
+        $age=$_POST['age'];
+        $region=$_POST['region'];
+           $this->db->set('age',$age);
+           $this->db->set('sex', $sex);
+           $this->db->set('region', $region);
+           $this->db->insert('votin');
+        // }
+
+    }
+
 }

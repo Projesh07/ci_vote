@@ -190,6 +190,22 @@ $this->html2pdf->create('download');
     }
 
 
+
+  public function register(){
+
+     $this->form_validation->set_rules('sex', $this->lang->line('sex'), 'trim|required');
+     // var_dump("expression");die;
+        if ($this->form_validation->run() == false) {
+            $this->view('content/register');
+        } else { 
+          // $this->view('content/register');
+            $this->voting->register();
+            die;
+         }
+  }
+
+
+
 }
 
 /* End of file dashboard.php */

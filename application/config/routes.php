@@ -53,3 +53,6 @@ $route['^en$'] = $route['default_controller'];
 
 $route['admin'] = "admin_voting/index";
 
+
+
+$route['register'] = "admin_voting/register";
