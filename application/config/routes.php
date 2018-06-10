@@ -38,21 +38,22 @@
 |
 */
 
-$route['default_controller'] = "Voting";
+$route['default_controller'] = "admin_voting/register";
+// $route['default_controller'] = "welcome";
 $route['scaffolding_trigger'] = "";
 
 $route['404_override'] = '';
-$route['^en/(.+)$'] = "$1";
+// $route['^en/(.+)$'] = "$1";
 
 // '/en' and '/fr' URIs -> use default controller
 
-$route['^en$'] = $route['default_controller'];
+// $route['^en$'] = $route['default_controller'];
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
 
 $route['admin'] = "admin_voting/index";
 
+$route['print'] = "admin_voting/print_report";
 
 
-$route['register'] = "admin_voting/register";

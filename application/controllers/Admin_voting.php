@@ -200,7 +200,10 @@ $this->html2pdf->create('download');
         } else { 
           // $this->view('content/register');
             $this->voting->register();
-            die;
+
+            // var_dump("expression");die;
+
+            redirect('voting/index/');
          }
   }
 
