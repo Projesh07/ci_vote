@@ -10,7 +10,7 @@ class Voting_model extends CI_Model
 
     /* This function create new vote. */
 
-    function create($orderd_data)
+    function create($orderd_data,$orderd_data2)
     {
            
            $this->db->set('dv_title',$this->input->post('dv_title'));
@@ -20,11 +20,20 @@ class Voting_model extends CI_Model
            foreach($orderd_data as $key => $value){
                $this->db->set('ci_votting_id',$id);
                $this->db->set(' candidate_name',$value);
+               $this->db->set('can_image',$orderd_data2[$key]);
                $this->db->insert('voter_info');
                
            }
             
-
+           foreach($orderd_data as $key => $value){
+               $this->db->set('v_voting_id',$id);
+               $this->db->set(' v_column',$value);
+               $this->db->set(' v_data',$value);
+               $this->db->set(' v_value',0);
+               $this->db->set('v_image',$orderd_data2[$key]);
+               $this->db->insert('ci_voting_counter');
+               
+           }
 
     }
 

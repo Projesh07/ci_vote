@@ -22,9 +22,41 @@ class Voting extends Front_end
      */
     public function vote_page()
     {
+        
+        // $data = $this->voting_counter->get_all_columns_active($data['vote']->dv_id);
+        // $data['columns'] = array_filter($columns);
         $data['vote'] = $this->voting_counter->get_one_active();
-        $columns = $this->voting_counter->get_all_columns_active($data['vote']->dv_id);
-        $data['columns'] = array_filter($columns);
+        $data= $this->voting_counter->result($data['vote']->dv_id);
+                    $str_val='';
+
+// var_dump($data);die;
+                $first=1;
+                foreach ($data['data'] as $val) {
+
+                    if($first==1){
+
+                        $selected='selected';
+                        $first=null;
+                     }else{
+                          $selected='';
+                     }
+                        
+
+                   $str_val .='<button class="btn-voting '.$selected.'" id="b'.preg_replace("/\s+/","",$val->v_column).'" data-value="'.$val->v_column.'" data-column="'.$val->v_column.'" data-img="'.$val->v_image.'">
+                  <div class="main-content">
+                      <div class="progress-bar '.$selected.'-p-var" style="width:'.$val->data_percentage.'" id="value'.preg_replace("/\s+/","",$val->v_column).'" ></div>
+                      <div class="serial-no" id="serial-no'.preg_replace("/\s+/","",$val->v_column).'"> '.$val->v_value.'
+                        </div> 
+                        <div><img class="img-content" src="'.base_url().'uploads/'.$val->v_image.'" alt="Fjords" /> <!--width="60" height="60"--></div>
+                      <div class="percentage" id="percentage-'. preg_replace("/\s+/","",$val->v_column).'">'.$val->data_percentage.'</div>
+                  </div>
+          </button>';
+                  
+               }
+
+               // var_dump($str_val);die();
+        $data['vote'] = $this->voting_counter->get_one_active();
+        $data['html']=$str_val;
         $this->view('content/vote_page', $data);
     }
 
@@ -37,6 +69,7 @@ class Voting extends Front_end
 
         $ip = $this->input->ip_address();
         $v_column = $this->input->post('v_column');
+        
         if (!empty($v_column)) {
             // $found_ip = $this->voting_counter->check_ip($id, $ip);
             // if (empty($found_ip)) {
@@ -69,12 +102,12 @@ class Voting extends Front_end
                      }
                         
 
-                   $str_val .='<button class="btn-voting '.$selected.'" id="b'.preg_replace("/\s+/","",$val->v_column).'" data-value="'.$val->v_column.'" data-column="'.$val->v_column.'">
+                   $str_val .='<button class="btn-voting '.$selected.'" id="b'.preg_replace("/\s+/","",$val->v_column).'" data-value="'.$val->v_column.'" data-column="'.$val->v_column.'" data-img="'.$val->v_image.'">
                   <div class="main-content">
                       <div class="progress-bar '.$selected.'-p-var" style="width:'.$val->data_percentage.'" id="value'.preg_replace("/\s+/","",$val->v_column).'" ></div>
                       <div class="serial-no" id="serial-no'.preg_replace("/\s+/","",$val->v_column).'"> '.$val->v_value.'
                         </div> 
-                        <div><img class="img-content" src="'.base_url().'global/assets/demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
+                        <div><img class="img-content" src="'.base_url().'uploads/'.$val->v_image.'" alt="Fjords" /> <!--width="60" height="60"--></div>
                       <div class="percentage" id="percentage-'. preg_replace("/\s+/","",$val->v_column).'">'.$val->data_percentage.'</div>
                   </div>
           </button>';

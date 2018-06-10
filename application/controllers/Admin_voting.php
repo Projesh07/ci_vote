@@ -35,19 +35,61 @@ class admin_voting extends Front_end
     public function create()
     {
 
+                $config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+                $this->load->library('upload', $config);
+                // $this->upload->initialize($config);
+
         $this->form_validation->set_rules('dv_title', $this->lang->line('dv_title'), 'trim|required');
         if ($this->form_validation->run() == false) {
             $this->view('content/voting_new');
         } else {
             // choices sent by the form
             $fields = $this->input->post('fields');
+
+            $files = $_FILES['userfiles'] ;
+
             // remove empty choices,order every choice by chars from A To Z
             $orderd_data = $this->array_combine2($fields);
 
-            $this->voting->create($orderd_data);
+            var_dump($orderd_data);
+$images = array();
+
+    foreach ($files['name'] as $key => $image) {
+        $_FILES['images[]']['name']= $files['name'][$key];
+        $_FILES['images[]']['type']= $files['type'][$key];
+        $_FILES['images[]']['tmp_name']= $files['tmp_name'][$key];
+        $_FILES['images[]']['error']= $files['error'][$key];
+        $_FILES['images[]']['size']= $files['size'][$key];
+
+        $fileName = 'can_img' .'_'. $image;
+
+        $images[] = $fileName;
+
+        $config['file_name'] = $fileName;
+
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload('images[]')) {
+            $this->upload->data();
+        } else {
+            return false;
+        }
+    }
+
+ $orderd_data2 = $this->array_combine2($images);
+
+            $this->voting->create($orderd_data,$orderd_data2);
+             // die();
             $this->session->set_flashdata('success_msg', 'Vote Succesfully Created');
             redirect('admin_voting/votes_list/');
         }
+
+
+
     }
 
     /**

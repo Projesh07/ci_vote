@@ -4,7 +4,7 @@
         var addButton = $('.add_button'); //Add button selector
         var wrapper = $('.field_wrapper'); //Input field wrapper
         var fieldHTML = '<div><input type="text" name="fields[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field">' +
-            '<i class="fa fa-minus btn btn-danger " aria-hidden="true"></i> </a></div>'; //New input field html
+            '<i class="fa fa-minus btn btn-danger " aria-hidden="true"></i> </a> <input type="file" name="userfiles[]" size="20" value=""/></div>'; //New input field html
         var x = 1; //Initial field counter is 1
         $(addButton).click(function(){ //Once add button is clicked
             if(x < maxField){ //Check maximum number of input fields
@@ -40,11 +40,22 @@
             <div class="field_wrapper">
                 <div>
                     <input type="text" name="fields[]" value=""/>
-                    <a href="javascript:void(0);" class="add_button" title="Add field">
+                                        <a href="javascript:void(0);" class="add_button" title="Add field">
                         <i class="fa fa-plus btn btn-success" aria-hidden="true"></i>
                     </a>
+                    <input type="file" name="userfiles[]" size="20" value="" />
+
                 </div>
             </div>
+            <br>
+            <br>
+<!--             <div class="">
+                <div>
+                    <input type="file" name="userfile" size="20" />
+                </div>
+            </div> -->
+            <br>
+
 
             <input class="btn btn-primary" type="submit" name="save" value="Create Vote"/>
 

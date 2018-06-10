@@ -123,7 +123,7 @@ progress:after {
 
         <?php 
         // var_dump($columns);die;
-        if($columns !=null){?>
+       // if($columns !=null){?>
  
         <div  class="col-md-12 margin-top-30 contentPost" style="display: none;">
             <div id="box-vote" class="box-vote">
@@ -131,53 +131,18 @@ progress:after {
                 <div class="box-vote-head"><?= $vote->dv_title?></div>
                 <div class="box-vote-content">
                     <input type="hidden" id="dv_id" value="<?= $vote->dv_id; ?>"/>
+                    <div id='vote-section'>
             <?php  $first=1;  
+                echo $html;
                     ?>
-            <?php foreach($columns as $col): 
-                 foreach($col as $key=>$value):
-                    // var_dump($col['ci_votting_id']);
 
-                 if($key=='candidate_name'):
-                     
-                 // var_dump($value);
-
-                    if($first==1):
-
-                        $selected='selected';
-                        // $first=null;
-                     else:
-                          $selected='not';
-                        ?>
-
-                     <?php endif;  ?>
-
-                     <div id='vote-section'>
-
-          <button class="btn-voting <?=$selected?>" id="b<?= preg_replace("/\s+/","",$value)?>" data-value="<?= $value ?>" data-column="<?= $value ?>">
-              <div class="main-content">
-                  <div class="progress-bar <?= $selected ?>-p-var" style="width:0%;" id="value<?= preg_replace("/\s+/","",$value)?>" ></div>
-                  <div class="serial-no" id="serial-no<?= preg_replace("/\s+/","",$value)?>">
-                    <?php if(isset($col['v_value'])){
-                        echo  $col['v_value'];
-                    }
-                        else{
-                            echo 0;
-                        } ?></div> <div><img class="img-content" src="<?= base_url(); ?>global/assets/demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
-                  <div class="percentage" id="percentage-<?= preg_replace("/\s+/","",$value)?>">0%</div>
               </div>
-          </button>
-
-</div>
-               <?php endif; ?>
-              <?php  endforeach;  ?>
-           
-              <?php  endforeach;  ?>
                 </div>
 
             </div>
         </div>
   
-    <?php }else{?> <p class="notice error">sorry,there no votes</p>  <?php } ?>
+    
 <!-- Vote End -->
 
 <div id="vote-results" style="display:none;"></div>
@@ -196,7 +161,8 @@ progress:after {
             var v_column = $(this).data('value');
            // var v_data = $('input[name="v_data"]').val();
             var v_data = $(this).data('column');
-            var sendData = {"v_column": v_column,"v_data": v_data};
+            var img_val=$(this).data('img');
+            var sendData = {"v_column": v_column,"v_data": v_data,"can_image":img_val};
              var first=1
             $.ajax({
                 url: "<?= base_url(); ?>voting/voted/" + dvId,
@@ -289,7 +255,7 @@ progress:after {
 $(".contentPost").delay(1000).fadeIn(100);
 
 
-setInterval(realtime, 1000);//time in milliseconds 
+// setInterval(realtime, 1000);//time in milliseconds 
 
     // })
 </script>

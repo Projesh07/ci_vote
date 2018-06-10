@@ -20,21 +20,27 @@ class Voting_counter_model extends CI_Model
 		// var_dump($data);die();
 		$column=$this->input->post('v_column');
 		$data=$this->input->post('v_column');
+		$img=$this->input->post('can_image');
 		$this->db->where('v_data', $data);
+		$this->db->where('v_voting_id', $id);
 		$result = $this->db->get('ci_voting_counter');
+		
 		// return $result->row();
+
 
 		// var_dump(count($result->row()));die;
 		if(count($result->row())>0){
 
 		$result=$result->result();
-	
-		$v_value=$result[0]->v_value+1;
+		// var_dump($result);
+		$v_value=(int)($result[0]->v_value)+1;
+		// var_dump($result[0]->v_value);die;
 		// var_dump($v_value);die;	
 		// $this->db->set('v_column',$column);
 		// $this->db->set('v_data',$data);
 		$this->db->set('v_value',$v_value);
 		$this->db->set('v_vistor_ip',$ip);
+		$this->db->set('v_image',$img);
 		// $this->db->set('v_voting_id', $id);
 		$this->db->where('v_data', $data);
 		$this->db->update('ci_voting_counter');
@@ -42,6 +48,7 @@ class Voting_counter_model extends CI_Model
 		}else{
 		$this->db->set('v_column',$column);
 		$this->db->set('v_data',$data);
+		$this->db->set('v_image',$img);
 		$this->db->set('v_vistor_ip',$ip);
 		$this->db->set('v_voting_id', $id);
 		$this->db->insert('ci_voting_counter');
@@ -61,13 +68,18 @@ class Voting_counter_model extends CI_Model
 		// $this->db->where('dv_state', 1);
 		// $this->db->select('A,B,C,D,E,F,G,H,I,J');
 		// $result = $this->db->get('ci_voting');
-		$this->db->where('ci_votting_id', $id);
-		$this->db->select('voter_info.*,ci_voting_counter.v_value')
-		->from('voter_info')
-		->join('ci_voting_counter','ci_voting_counter.v_column = voter_info.candidate_name','left')
+		$total = '(select sum(v_value) from ci_voting_counter)';
+		$this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as data_percentage')
+		->from('ci_voting')
+		->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
+		// ->join('voter_info',"voter_info.ci_votting_id = ci_voting.dv_id",'right');
+		$this->db->where('dv_id', $id)
 		->order_by('v_value','desc');
-		$result = $this->db->get();
-		$return = $result->result_array();
+		// ->group_by('dv_id');
+
+		$query = $this->db->get();
+
+		$return['data'] = $query->result_array();
 		// $return = array();
 		// if ($result->num_rows() > 0) {
 		// 	foreach ($result->row_array() as $key => $value) {
@@ -105,10 +117,12 @@ class Voting_counter_model extends CI_Model
 		
 		$total = '(select sum(v_value) from ci_voting_counter)';
 		$this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as data_percentage')
-		->from('ci_voting_counter')
-		->join('ci_voting',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
+		->from('ci_voting')
+		->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
+		// ->join('voter_info',"voter_info.ci_votting_id = ci_voting.dv_id",'right');
 		$this->db->where('dv_id', $id)
 		->order_by('v_value','desc');
+		// ->group_by('dv_id');
 
 		$query = $this->db->get();
 
@@ -117,13 +131,13 @@ class Voting_counter_model extends CI_Model
 
 		// // $result = $result->result();
 
-		$this->db->select('max(concat(round((100*(v_value))/'.$total.',0),"%")) as max_percentage,v_column')
-		->from('ci_voting_counter')
-		->join('ci_voting',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
-		$this->db->where('dv_id', $id)
-		->order_by('v_value','desc');
-		$query2 = $this->db->get();
-		$data['max'] = $query2->result();
+		// $this->db->select('max(concat(round((100*(v_value))/'.$total.',0),"%")) as max_percentage,v_column')
+		// ->from('ci_voting_counter')
+		// ->join('ci_voting',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
+		// $this->db->where('dv_id', $id)
+		// ->order_by('v_value','desc');
+		// $query2 = $this->db->get();
+		// $data['max'] = $query2->result();
 		
 
 		return $data;
