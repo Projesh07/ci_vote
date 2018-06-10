@@ -115,7 +115,7 @@ class Voting_counter_model extends CI_Model
   //                           WHERE dv_id=$id ")->result();
 		
 		
-		$total = '(select sum(v_value) from ci_voting_counter)';
+		$total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
 		$this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as data_percentage')
 		->from('ci_voting')
 		->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id");

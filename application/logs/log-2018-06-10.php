@@ -460,3 +460,38 @@ ERROR - 2018-06-10 11:49:53 --> Severity: error --> Exception: Call to a member 
 DEBUG - 2018-06-10 11:50:07 --> No URI present. Default controller set.
 DEBUG - 2018-06-10 11:51:32 --> No URI present. Default controller set.
 DEBUG - 2018-06-10 11:51:57 --> No URI present. Default controller set.
+DEBUG - 2018-06-10 12:02:26 --> No URI present. Default controller set.
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:27 --> Could not find the language line "inact"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:28 --> Could not find the language line "inact"
+ERROR - 2018-06-10 12:02:31 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "dv_title"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "inact"
+ERROR - 2018-06-10 12:02:51 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "act"
+ERROR - 2018-06-10 12:02:57 --> Could not find the language line "inact"
+DEBUG - 2018-06-10 12:03:05 --> No URI present. Default controller set.
+DEBUG - 2018-06-10 12:10:05 --> No URI present. Default controller set.
