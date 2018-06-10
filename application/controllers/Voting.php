@@ -53,8 +53,38 @@ class Voting extends Front_end
 
                 // var_dump($data);die;
 
+               
+               // var_dump($data['data']);die(); 
+                $str_val='';
 
-                echo json_encode($data);    
+                $first=1;
+                foreach ($data['data'] as $val) {
+
+                    if($first==1){
+
+                        $selected='selected';
+                        $first=null;
+                     }else{
+                          $selected='';
+                     }
+                        
+
+                   $str_val .='<button class="btn-voting '.$selected.'" id="b'.preg_replace("/\s+/","",$val->v_column).'" data-value="'.$val->v_column.'" data-column="'.$val->v_column.'">
+                  <div class="main-content">
+                      <div class="progress-bar '.$selected.'-p-var" style="width:'.$val->data_percentage.'" id="value'.preg_replace("/\s+/","",$val->v_column).'" ></div>
+                      <div class="serial-no" id="serial-no'.preg_replace("/\s+/","",$val->v_column).'"> '.$val->v_value.'
+                        </div> 
+                        <div><img class="img-content" src="'.base_url().'global/assets/demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
+                      <div class="percentage" id="percentage-'. preg_replace("/\s+/","",$val->v_column).'">'.$val->data_percentage.'</div>
+                  </div>
+          </button>';
+                  
+               }
+
+//var_dump($str_val);die();
+               echo $str_val;
+
+                // echo json_encode($data);    
                 // var_dump($data);die;
                 // $this->view('content/vote_result_current', $data);
             // }
@@ -73,7 +103,36 @@ class Voting extends Front_end
         if (!empty($id)) {
 
                 $data= $this->voting_counter->result($id);
-                echo json_encode($data);    
+
+                $str_val='';
+
+                $first=1;
+                foreach ($data['data'] as $val) {
+
+                    if($first==1){
+
+                        $selected='selected';
+                        $first=null;
+                     }else{
+                          $selected='';
+                     }
+                        
+
+                   $str_val .='<button class="btn-voting '.$selected.'" id="b'.preg_replace("/\s+/","",$val->v_column).'" data-value="'.$val->v_column.'" data-column="'.$val->v_column.'">
+                  <div class="main-content">
+                      <div class="progress-bar '.$selected.'-p-var" style="width:'.$val->data_percentage.'" id="value'.preg_replace("/\s+/","",$val->v_column).'" ></div>
+                      <div class="serial-no" id="serial-no'.preg_replace("/\s+/","",$val->v_column).'"> '.$val->v_value.'
+                        </div> 
+                        <div><img class="img-content" src="'.base_url().'global/assets/demo.jpg" alt="Fjords" /> <!--width="60" height="60"--></div>
+                      <div class="percentage" id="percentage-'. preg_replace("/\s+/","",$val->v_column).'">'.$val->data_percentage.'</div>
+                  </div>
+          </button>';
+                  
+               }
+
+
+               echo $str_val;
+                // echo json_encode($data);    
 
         }
     }

@@ -63,9 +63,10 @@ class Voting_counter_model extends CI_Model
 		// $result = $this->db->get('ci_voting');
 		$this->db->where('ci_votting_id', $id);
 		$this->db->select('voter_info.*,ci_voting_counter.v_value')
+		->from('voter_info')
 		->join('ci_voting_counter','ci_voting_counter.v_column = voter_info.candidate_name','left')
 		->order_by('v_value','desc');
-		$result = $this->db->get('voter_info');
+		$result = $this->db->get();
 		$return = $result->result_array();
 		// $return = array();
 		// if ($result->num_rows() > 0) {

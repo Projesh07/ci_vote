@@ -117,118 +117,7 @@ progress:after {
 
     /* footer */
 </style>
-<script type="text/javascript">
 
-    $(document).ready(function () {
-
-        
-
-
-        $(".btn-voting").click(function () {
-
-            var dvId = $("#dv_id").val();
-            //var v_column = $('input[name="v_column"]:checked').val();
-            var v_column = $(this).data('value');
-           // var v_data = $('input[name="v_data"]').val();
-            var v_data = $(this).data('column');
-            var sendData = {"v_column": v_column,"v_data": v_data};
-             var first=1
-            $.ajax({
-                url: "<?= base_url(); ?>voting/voted/" + dvId,
-                type: "post",
-                data: sendData,
-                success: function (data) {
-                   
-                    var data=JSON.parse(data);
-                     console.log(data);
-                    
-                     for(var key in data.data){
-                       
-                        str=data.data[key].v_column;
-                        id="value"+str.replace(' ', '')
-
-                        // console.log(id+" id");
-
-                        $("#"+id).width(data.data[key].data_percentage);
-                         divid="percentage-"+str.replace(' ', '')
-                        $("#"+divid).html(data.data[key].data_percentage);
-
-                        serialno='serial-no'+str.replace(' ', '')
-
-
-                        $("#"+serialno).html(data.data[key].v_value);
-
-                        btn='b'+str.replace(' ', '')
-
-                        btn2='b'+data.max[0].v_column.replace(' ', '')
-                        console.log(btn2);
-                            if(btn==btn2){
-                             btn='b'+str.replace(' ', '')
-                             $(".btn-voting").removeClass("selected");
-                             $("#"+btn).addClass("selected");
-                      
-
-                             // new_val=data.data[key].data_percentage;
-                        }
-    
-                        }
-    
-                }
-            });
-
-            return false;
-
-        })
-
-
-
-
- function realtime(){
-
-            var dvId = $("#dv_id").val();
-            var first=1
-            $.ajax({
-                url: "<?= base_url(); ?>voting/realtime_result/" + dvId,
-                type: "post",
-                data: {},
-                success: function (data) {
-                   
-                    var data=JSON.parse(data);
-                    console.log(data.data);
-                     for(var key in data.data){
-                       
-                        str=data.data[key].v_column;
-                        id="value"+str.replace(' ', '')
-
-                        divid="percentage-"+str.replace(' ', '')
-                        $("#"+id).width(data.data[key].data_percentage);
-                        $("#"+divid).html(data.data[key].data_percentage);
-                        serialno='serial-no'+data.data[key].v_column
-                        $("#"+serialno).html(data.data[key].v_value);
-
-                            if(first==1){
-                            btn='b'+data.data[key].v_column
-                             $(".btn-voting").removeClass("selected");
-                             $("#"+btn).addClass("selected");
-                             new_val=data.data[key].data_percentage;
-                             first=2
-                        }
-                        }
-
-                }
-            });
-
- }
-
-
-$(".contentPost").delay(1000).fadeIn(100);
-
-
-  // setInterval(realtime, 1000);//time in milliseconds 
-
-    })
-</script>
-<!-- Vote Start -->
 
 
 
@@ -250,16 +139,19 @@ $(".contentPost").delay(1000).fadeIn(100);
 
                  if($key=='candidate_name'):
                      
-                 
+                 // var_dump($value);
+
                     if($first==1):
 
                         $selected='selected';
-                        $first=null;
+                        // $first=null;
                      else:
                           $selected='not';
                         ?>
 
                      <?php endif;  ?>
+
+                     <div id='vote-section'>
 
           <button class="btn-voting <?=$selected?>" id="b<?= preg_replace("/\s+/","",$value)?>" data-value="<?= $value ?>" data-column="<?= $value ?>">
               <div class="main-content">
@@ -275,7 +167,7 @@ $(".contentPost").delay(1000).fadeIn(100);
               </div>
           </button>
 
-
+</div>
                <?php endif; ?>
               <?php  endforeach;  ?>
            
@@ -289,3 +181,116 @@ $(".contentPost").delay(1000).fadeIn(100);
 <!-- Vote End -->
 
 <div id="vote-results" style="display:none;"></div>
+
+<script type="text/javascript">
+
+
+
+        
+
+
+        $(document).on('click','.btn-voting',function () {
+
+            var dvId = $("#dv_id").val();
+            //var v_column = $('input[name="v_column"]:checked').val();
+            var v_column = $(this).data('value');
+           // var v_data = $('input[name="v_data"]').val();
+            var v_data = $(this).data('column');
+            var sendData = {"v_column": v_column,"v_data": v_data};
+             var first=1
+            $.ajax({
+                url: "<?= base_url(); ?>voting/voted/" + dvId,
+                type: "post",
+                data: sendData,
+                success: function (data) {
+                   
+                    // var data=JSON.parse(data);
+                     console.log(data);
+                     $('#vote-section').html(data);
+                     // for(var key in data.data){
+                       
+                     //    str=data.data[key].v_column;
+                     //    id="value"+str.replace(' ', '')
+
+                     //    // console.log(id+" id");
+
+                     //    $("#"+id).width(data.data[key].data_percentage);
+                     //     divid="percentage-"+str.replace(' ', '')
+                     //    $("#"+divid).html(data.data[key].data_percentage);
+
+                     //    serialno='serial-no'+str.replace(' ', '')
+
+
+                     //    $("#"+serialno).html(data.data[key].v_value);
+
+                     //    btn='b'+str.replace(' ', '')
+
+                     //    btn2='b'+data.max[0].v_column.replace(' ', '')
+                     //    console.log(btn2);
+                     //        if(btn==btn2){
+                     //         btn='b'+str.replace(' ', '')
+                     //         $(".btn-voting").removeClass("selected");
+                     //         $("#"+btn).addClass("selected");
+                      
+                     //    }
+    
+                     //    }
+    
+                }
+            });
+
+            return false;
+
+        })
+
+
+
+
+ function realtime(){
+
+            var dvId = $("#dv_id").val();
+            var first=1
+            $.ajax({
+                url: "<?= base_url(); ?>voting/realtime_result/" + dvId,
+                type: "post",
+                data: {},
+                success: function (data) {
+
+         $('#vote-section').html(data);
+                   
+                    // var data=JSON.parse(data);
+                    // console.log(data.data);
+                    //  for(var key in data.data){
+                       
+                    //     str=data.data[key].v_column;
+                    //     id="value"+str.replace(' ', '')
+
+                    //     divid="percentage-"+str.replace(' ', '')
+                    //     $("#"+id).width(data.data[key].data_percentage);
+                    //     $("#"+divid).html(data.data[key].data_percentage);
+                    //     serialno='serial-no'+data.data[key].v_column
+                    //     $("#"+serialno).html(data.data[key].v_value);
+
+                    //         if(first==1){
+                    //         btn='b'+data.data[key].v_column
+                    //          $(".btn-voting").removeClass("selected");
+                    //          $("#"+btn).addClass("selected");
+                    //          new_val=data.data[key].data_percentage;
+                    //          first=2
+                    //     }
+                    //     }
+
+                }
+            });
+
+ }
+
+
+$(".contentPost").delay(1000).fadeIn(100);
+
+
+setInterval(realtime, 1000);//time in milliseconds 
+
+    // })
+</script>
+<!-- Vote Start -->
