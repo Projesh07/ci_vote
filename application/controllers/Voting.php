@@ -128,13 +128,9 @@ class Voting extends Front_end
                   
                }
 
-//var_dump($str_val);die();
                echo $str_val;
 
-                // echo json_encode($data);    
-                // var_dump($data);die;
-                // $this->view('content/vote_result_current', $data);
-            // }
+
         }
     }
 
