@@ -6,6 +6,7 @@ class Voting_model extends CI_Model
     function __construct()
     {
         parent::__construct();
+
     }
 
     /* This function create new vote. */
@@ -171,6 +172,10 @@ function register(){
            $this->db->set('region', $region);
            $this->db->insert('votin');
         // }
+
+        $id=$this->db->insert_id();
+        return $id;
+        // var_dump($id);die;   
 
     }
 

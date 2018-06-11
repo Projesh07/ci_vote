@@ -5,10 +5,8 @@ class Voting_counter_model extends CI_Model
 
 	function __construct()
 	{
-
-
-		
 		parent::__construct();
+		$this->load->library('session');
 	}
 
 
@@ -26,7 +24,7 @@ class Voting_counter_model extends CI_Model
 		$result = $this->db->get('ci_voting_counter');
 		
 		// return $result->row();
-
+		$votin_id = $this->session->userdata('voter_id');
 
 		// var_dump(count($result->row()));die;
 		if(count($result->row())>0){
@@ -42,6 +40,7 @@ class Voting_counter_model extends CI_Model
 		$this->db->set('v_vistor_ip',$ip);
 		$this->db->set('v_image',$img);
 		// $this->db->set('v_voting_id', $id);
+		$this->db->set('votin_id',$votin_id);
 		$this->db->where('v_data', $data);
 		$this->db->update('ci_voting_counter');
 
@@ -51,6 +50,7 @@ class Voting_counter_model extends CI_Model
 		$this->db->set('v_image',$img);
 		$this->db->set('v_vistor_ip',$ip);
 		$this->db->set('v_voting_id', $id);
+		$this->db->set('votin_id',$votin_id);
 		$this->db->insert('ci_voting_counter');
 		}
 

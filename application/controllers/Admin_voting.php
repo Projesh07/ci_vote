@@ -9,6 +9,7 @@ class admin_voting extends Front_end
         parent::__construct();
         $this->load->language('voting');
         $this->load->model('voting_model', 'voting');
+        $this->load->library('session');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters("<span class='notification-input ni-error'>", "</span>");
 
@@ -181,10 +182,13 @@ $this->html2pdf->folder('./assets/pdfs/');
 $this->html2pdf->filename('test.pdf');
 
 //Set the paper defaults
-$this->html2pdf->paper('a4', 'portrait');
+$this->html2pdf->paper(array(0, 0, 595, 841), 'portrait');
+
 
 //Load html view
-$this->html2pdf->html('<h1>Some Title</h1><p>Some content in here</p>');
+$html=$this->generate_report();
+
+$this->html2pdf->html($html);
 $this->html2pdf->create('download');
 
     }
@@ -199,12 +203,667 @@ $this->html2pdf->create('download');
             $this->view('content/register');
         } else { 
           // $this->view('content/register');
-            $this->voting->register();
-            die;
+            $id=$this->voting->register();
+            $this->session->set_userdata('voter_id',$id);
+            redirect('voting/');
          }
   }
 
 
+public function generate_report(){
+
+
+
+
+$html = <<<'ENDHTML'
+<html>
+    <head>
+        <title>Result sheet</title>
+
+
+        <style>
+         @page { size: 1000pt 700pt; }
+    .TFtable{
+        width:100%; 
+        border-collapse:collapse; 
+    }
+    .TFtable td{ 
+        padding:7px; border:#4e95f4 1px solid;
+    }
+    /* provide some minimal visual accomodation for IE8 and below */
+    .TFtable tr{
+        background: #f00ff0;
+    }
+    /*  Define the background color for all the ODD background rows  */
+    .TFtable tr:nth-child(odd){ 
+        background: #fffff0;
+    }
+    /*  Define the background color for all the EVEN background rows  */
+    .TFtable tr:nth-child(even){
+        background: #ff0ff0;
+    }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+<table style="width:600px">
+ <table class="TFtable">
+ 
+<table border="3" style="background-color:#FFFFCC;border-collapse:collapse;border:3px solid #00FF00;color:#000000;width:100%" cellpadding="3" cellspacing="5">
+    <tr>
+        <td>Candidate Name</td>
+        <td>Total Vote Count</td>
+        <td>Total percantage</td>
+        <td>Total Male Vote </td>
+        <td>Total Femal Vote </td>
+        <td>Kayes</td>
+        <td>Bamako</td>
+        <td>Koulikoro</td>
+        <td>Ségou</td>
+        <td>Sikasso</td>
+        <td>Mopti</td>
+        <td>Gao</td>
+        <td>Tombouctou</td>
+        <td>Kidal   </td>
+    </tr>
+    <tr>
+        <td>Bathily</td>
+    <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    
+    
+    </tr>
+    <tr>
+                <td>Cissé </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    
+    </tr>
+    <tr>
+                <td>Coulibaly</td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+            <td>Dembélé</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+    <td>Dembélé</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>Dembélé</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>DIALLO </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+<td>Diawara </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+    <td>DIARRA</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>GUINDO</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+    <td>Keita  </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+            <tr>
+    <td>Koné </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+            <tr>
+    <td>Keita  </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+            <tr>
+    <td>MAIGA</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+            <tr>
+        <td>Mara</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>   
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+            <tr>
+        <td>Mariko </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+            <td>SAMAKE</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+<td>SANGARÉ</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>Sanogo </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+        <tr>
+        <td>SIDIBE </td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TRAORÉ</td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+            <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+
+  </table>
+</table>
+            <br>
+            <h2>Every Region Result</h2>
+    <div class="row">
+        
+    <table class=" table table-responsive table-striped table-bordered">
+        <thead>
+            <tr>
+               
+                <th>Region</th>
+                <th> Total Male Vote Count </th>
+                <th>Total Male Vote percentage (%)</th>
+                 <th>Total Female Vote count</th>
+                <th>Total Female Vote  percantage (%) </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td> Kayes</td>
+                <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+              
+            </tr>
+            <tr>
+                <td>Bamako</td>
+                 <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Koulikoro</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Ségou</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Sikasso</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Mopti</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Gao</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Tombouctou</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td>Kidal</td>
+               <td></td>
+                <td></td>
+                 <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+        </div>
+</body>
+</html>
+
+
+ENDHTML;
+
+
+return $html;
+}
 
 }
 

@@ -9,6 +9,7 @@ class Voting extends Front_end
 
         parent::__construct();
         $this->load->helper('globalfunction_helper');
+        $this->load->library('session');
         $this->load->model('voting_counter_model', 'voting_counter');
     }
 
