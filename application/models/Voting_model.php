@@ -183,8 +183,15 @@ function register(){
 
 
 
- public function report_data($id=111)
+ public function report_data($id='')
     {
+
+        $this->db->where('dv_state', 1);
+        $result = $this->db->get('ci_voting');
+
+        $id=$result->row('dv_id');
+
+        // var_dump($id);die;
 
 
       $total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
