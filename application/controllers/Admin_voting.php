@@ -56,8 +56,9 @@ class admin_voting extends Front_end
             // remove empty choices,order every choice by chars from A To Z
             $orderd_data = $this->array_combine2($fields);
 
-            var_dump($orderd_data);
-$images = array();
+         
+
+    $images = array();
 
     foreach ($files['name'] as $key => $image) {
         $_FILES['images[]']['name']= $files['name'][$key];
@@ -66,9 +67,21 @@ $images = array();
         $_FILES['images[]']['error']= $files['error'][$key];
         $_FILES['images[]']['size']= $files['size'][$key];
 
-        $fileName = 'can_img' .'_'. $image;
+        $str = '01234567891011121314151617181920212223242526';
+
+        $shuffled = str_shuffle($str);
+        $shuffled = substr($shuffled,1,10);
+
+
+
+        $fileName = $shuffled.'_'. $image;
+
+        
+         
 
         $images[] = $fileName;
+         
+        // var_dump($images);
 
         $config['file_name'] = $fileName;
 
@@ -81,6 +94,7 @@ $images = array();
         }
     }
 
+// var_dump($fileName);die();
  $orderd_data2 = $this->array_combine2($images);
 
             $this->voting->create($orderd_data,$orderd_data2);
@@ -212,6 +226,8 @@ $this->html2pdf->create('download');
 
 public function generate_report(){
 
+
+    $data=$this->voting->report_data();
 
 
 

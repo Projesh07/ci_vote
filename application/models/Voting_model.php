@@ -36,6 +36,8 @@ class Voting_model extends CI_Model
                
            }
 
+               $this->db->set('v_voting_id',$id);
+               $this->db->insert('vote_state_count');
     }
 
 
@@ -178,5 +180,35 @@ function register(){
         // var_dump($id);die;   
 
     }
+
+
+
+ public function report_data($value='')
+    {
+
+
+    // $total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
+
+    // $this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as data_percentage')
+    // ->from('ci_voting')
+    // ->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
+    // // ->join('voter_info',"voter_info.ci_votting_id = ci_voting.dv_id",'right');
+    // $this->db->where('dv_id', $id)
+    // ->order_by('v_value','desc');
+    // ->group_by('dv_id');
+
+
+      // $total_male = '(select sum(sex) from votin where v_voting_id='.$id.')';
+      // $this->db->select('*,count() as data_percentage')
+
+    $total_female = $this->db->query(" SELECT count(sex) as total_female FROM votin  JOIN ci_voting_counter ON ci_voting_counter.votin_id = votin.Id
+                            WHERE sex='female' ")->result();
+
+    var_dump($total_female);die;
+
+    // $query = $this->db->get();
+
+    // $data['data']=$query->result();
+    }   
 
 }

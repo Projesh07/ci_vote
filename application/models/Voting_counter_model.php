@@ -26,16 +26,39 @@ class Voting_counter_model extends CI_Model
 		// return $result->row();
 		$votin_id = $this->session->userdata('voter_id');
 
-		// var_dump(count($result->row()));die;
+		$this->db->where('Id', $votin_id);
+		$gender = $this->db->get('votin');
+		$gender = $gender->row('sex');
+
+		$this->db->where('Id', $votin_id);
+		$region = $this->db->get('votin');
+		$region = $region->row('region');
+
+		// var_dump($region);die;
+
+
+
+	
+
+		// var_dump(trim($region)=='Segou');die;
 		if(count($result->row())>0){
 
 		$result=$result->result();
+
+		if($gender=='female'){
+			$v_female=$result[0]->v_female+1;
+			$this->db->set('v_female',$v_female);
+
+		}else if($gender=='male'){
+				$v_male=$result[0]->v_male+1;
+				$this->db->set('v_male',$v_male);
+		}else{
+			$v_others=$result[0]->v_male+1;
+			$this->db->set('v_others',$v_others);
+		}
 		// var_dump($result);
 		$v_value=(int)($result[0]->v_value)+1;
-		// var_dump($result[0]->v_value);die;
-		// var_dump($v_value);die;	
-		// $this->db->set('v_column',$column);
-		// $this->db->set('v_data',$data);
+
 		$this->db->set('v_value',$v_value);
 		$this->db->set('v_vistor_ip',$ip);
 		$this->db->set('v_image',$img);
@@ -43,6 +66,66 @@ class Voting_counter_model extends CI_Model
 		$this->db->set('votin_id',$votin_id);
 		$this->db->where('v_data', $data);
 		$this->db->update('ci_voting_counter');
+
+		$this->db->set('v_vistor_ip',$ip);
+		$this->db->update('ci_voting_counter');
+
+
+
+						$this->db->where('v_voting_id', $id);
+						$region_val = $this->db->get('vote_state_count');
+						$region_val=$region_val->row();
+
+				if(trim($region)=='Kayes'){
+				
+						$kayes=$region_val->kayes+1;
+						$this->db->set('kayes',$kayes);
+				}else if(trim($region)=='Bamako'){
+						$bamako=$region_val->bamako+1;
+						$this->db->set('bamako',$bamako);
+				}else if(trim($region)=='Koulikoro'){
+						$this->db->set('koulikoro',$v_value);
+
+				}else if(trim($region)=='Segou'){
+						$segou=$region_val->segou+1;
+						$this->db->set('segou',$segou);
+
+				}else if(trim($region)=='Sikasso'){
+						$sikasso=$region_val->sikasso+1;
+						$this->db->set('sikasso',$v_value);
+
+				}else if(trim($region)=='Mopti'){
+						$mopti=$region_val->mopti+1;
+						$this->db->set('mopti',$mopti);
+
+				}else if(trim($region)=='Gao'){
+						$gao=$region_val->gao+1;
+						$this->db->set('gao',$gao);
+
+				}else if(trim($region)=='Tombouctou'){
+						$tombouctou=$region_val->tombouctou+1;
+						$this->db->set('tombouctou',$tombouctou);
+
+				}else{
+					$kidal=$region_val->kidal+1;
+					$this->db->set('kidal',$kidal);
+
+				}
+
+				if($gender=='female'){
+					$v_female=$region_val->v_female+1;
+					$this->db->set('v_female',$v_female);
+
+				}else if($gender=='male'){
+						$v_male=$region_val->v_male+1;
+						$this->db->set('v_male',$v_male);
+				}else{
+					$v_others=$region_val->v_male+1;
+					$this->db->set('v_others',$v_others);
+				}
+
+				$this->db->where('v_voting_id', $id);
+				$this->db->update('vote_state_count');
 
 		}else{
 		$this->db->set('v_column',$column);
@@ -52,6 +135,11 @@ class Voting_counter_model extends CI_Model
 		$this->db->set('v_voting_id', $id);
 		$this->db->set('votin_id',$votin_id);
 		$this->db->insert('ci_voting_counter');
+
+		#vote_state_count
+		$this->db->set('v_voting_id',$id);
+		$this->db->insert('vote_state_count');
+
 		}
 
 	}

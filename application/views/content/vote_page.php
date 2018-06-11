@@ -128,9 +128,13 @@ progress:after {
         <div  class="col-md-12 margin-top-30 contentPost" style="display: none;">
             <div id="box-vote" class="box-vote">
 
-                <div class="box-vote-head"><?= $vote->dv_title?></div>
+                <div class="box-vote-head"><?php if(isset($vote)){
+                    echo $vote->dv_title;
+                } ?></div>
                 <div class="box-vote-content">
+                    <?php if(isset($vote)){ ?>
                     <input type="hidden" id="dv_id" value="<?= $vote->dv_id; ?>"/>
+                <?php } ?>
                     <div id='vote-section'>
             <?php  $first=1;  
                 echo $html;

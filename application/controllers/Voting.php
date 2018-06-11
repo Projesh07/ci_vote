@@ -26,11 +26,15 @@ class Voting extends Front_end
         
         // $data = $this->voting_counter->get_all_columns_active($data['vote']->dv_id);
         // $data['columns'] = array_filter($columns);
+
         $data['vote'] = $this->voting_counter->get_one_active();
+
+        if(isset($data['vote'])){
+
         $data= $this->voting_counter->result($data['vote']->dv_id);
                     $str_val='';
 
-// var_dump($data);die;
+
                 $first=1;
                 foreach ($data['data'] as $val) {
 
@@ -58,6 +62,9 @@ class Voting extends Front_end
                // var_dump($str_val);die();
         $data['vote'] = $this->voting_counter->get_one_active();
         $data['html']=$str_val;
+                }else{
+                  $data['html']='There is no active vote yet';
+                }
         $this->view('content/vote_page', $data);
     }
 
@@ -74,11 +81,13 @@ class Voting extends Front_end
         if (!empty($v_column)) {
             $found_ip = $this->voting_counter->check_ip($id, $ip);
 
+            // var_dump(!$found_ip);die;
+
             $message='Already voted';
-            if (empty($found_ip)) {
+            // if ($found_ip) {
                 $this->voting_counter->add_vote($id, $ip);
                 $message='';
-            }
+            // }
                 // $data['result'] = $this->voting_counter->result($id);
                 // $data['rows'] = $this->voting_counter->getNumVoting($id);
                 // var_dump($data);die;
