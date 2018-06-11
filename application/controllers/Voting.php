@@ -72,9 +72,13 @@ class Voting extends Front_end
         $v_column = $this->input->post('v_column');
         
         if (!empty($v_column)) {
-            // $found_ip = $this->voting_counter->check_ip($id, $ip);
-            // if (empty($found_ip)) {
+            $found_ip = $this->voting_counter->check_ip($id, $ip);
+
+            $message='Already voted';
+            if (empty($found_ip)) {
                 $this->voting_counter->add_vote($id, $ip);
+                $message='';
+            }
                 // $data['result'] = $this->voting_counter->result($id);
                 // $data['rows'] = $this->voting_counter->getNumVoting($id);
                 // var_dump($data);die;
@@ -89,7 +93,7 @@ class Voting extends Front_end
 
                
                // var_dump($data['data']);die(); 
-                $str_val='';
+                $str_val='<div>'.$message.'</div>';
 
                 $first=1;
                 foreach ($data['data'] as $val) {

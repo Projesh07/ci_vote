@@ -36,7 +36,7 @@
 
 
 
-    <?php echo form_open_multipart('admin_voting/register/', array('class' => 'form-horizontal')) ?>
+    <?php echo form_open('admin_voting/register/', array('class' => 'form-horizontal')) ?>
             <br>
  <h2 style="text-align: center">Voter must fill-up the form*</h2>
 <br>
