@@ -9,7 +9,7 @@
  * @property CI_Session $session
  */
 
-class Front_end extends CI_Controller {
+class Front extends CI_Controller {
 
     /***
      * pages of site in menu
@@ -58,7 +58,7 @@ class Front_end extends CI_Controller {
      * @param array $data 
      */
      function view($main_containt, $data = null) {
-        $this->load->view('theme/header_vote');
+        $this->load->view('theme/header');
         $this->load->view($main_containt, $data);
         $this->load->view('theme/footer');
     }

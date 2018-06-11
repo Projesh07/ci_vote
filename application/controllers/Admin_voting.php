@@ -203,7 +203,7 @@ $this->html2pdf->paper(array(0, 0, 595, 841), 'portrait');
 $html=$this->generate_report();
 
 $this->html2pdf->html($html);
-$this->html2pdf->create('download');
+$this->html2pdf->create('save');
 
     }
 
@@ -229,9 +229,14 @@ public function generate_report(){
 
     $data=$this->voting->report_data();
 
+    // var_dump($data['table_two']);die();
+
+    
 
 
-$html = <<<'ENDHTML'
+
+
+$table='    
 <html>
     <head>
         <title>Result sheet</title>
@@ -281,511 +286,41 @@ $html = <<<'ENDHTML'
         <td>Mopti</td>
         <td>Gao</td>
         <td>Tombouctou</td>
-        <td>Kidal   </td>
-    </tr>
-    <tr>
-        <td>Bathily</td>
-    <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    </tr>
-    <tr>
-                <td>Cissé </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    
-    </tr>
-    <tr>
-                <td>Coulibaly</td>
+        <td>Kidal</td>
+    </tr>';
 
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-            <td>Dembélé</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-    <td>Dembélé</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-        <td>Dembélé</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-        <td>DIALLO </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-<td>Diawara </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-    <td>DIARRA</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-        <td>GUINDO</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-    <td>Keita  </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-            <tr>
-    <td>Koné </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-            <tr>
-    <td>Keita  </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-            <tr>
-    <td>MAIGA</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-            <tr>
-        <td>Mara</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>   
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-            <tr>
-        <td>Mariko </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-            <td>SAMAKE</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-<td>SANGARÉ</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-        <td>Sanogo </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-        <tr>
-        <td>SIDIBE </td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>TRAORÉ</td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-            <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+    foreach ($data['table_one'] as  $value) {
 
-</table>
+        // var_dump($value);
+        # code...
+
+    $table.='<tr>
+         <td>'.$value->v_column.'</td>
+         <td>'.$value->total_vote.'</td>
+         <td>'.$value->total_percentage.'</td>
+         <td>'.$value->total_m_vote.'</td>
+         <td>'.$value->total_f_vote.'</td>
+         <td>'.$value->kayes.'</td>
+         <td>'.$value->bamako.'</td>
+         <td>'.$value->koulikoro.'</td>
+             <td>'.$value->segou.'</td>
+         <td>'.$value->sikasso.'</td>
+         <td>'.$value->mopti.'</td>
+         <td>'.$value->gao.'</td>
+         <td>'.$value->tombouctou.'</td>
+             <td>'.$value->kidal.'</td>
+
+     </tr>';
+    }
+
+ $table .='</table></table></table>';
 
 
-  </table>
-</table>
-            <br>
+
+
+
+
+    $table_two='<br>
             <h2>Every Region Result</h2>
     <div class="row">
         
@@ -805,78 +340,86 @@ $html = <<<'ENDHTML'
             <tr>
                 
                 <td> Kayes</td>
-                <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
               
             </tr>
             <tr>
                 <td>Bamako</td>
-                 <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
             <tr>
                 <td>Koulikoro</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Ségou</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Sikasso</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Mopti</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Gao</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Tombouctou</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                 <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
                <tr>
                 <td>Kidal</td>
-               <td></td>
-                <td></td>
-                 <td></td>
-                <td></td>
+                <td>'.$data['table_two'][0]->v_male.'</td>
+                 <td>'.$data['table_two'][0]->male_percentage.'</td>
+                 
+                <td>'.$data['table_two'][0]->v_female.'</td>
+                <td>'.$data['table_two'][0]->female_percentage.'</td>
             </tr>
-        </tbody>
-    </table>
-    </div>
-        </div>
-</body>
-</html>
+                
+        </tbody></table>
+            </div>
+                </div>
+        </body>
+        </html>';
 
 
-ENDHTML;
-
+$html =$table.$table_two;
 
 return $html;
 }

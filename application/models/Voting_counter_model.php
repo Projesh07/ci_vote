@@ -199,8 +199,8 @@ class Voting_counter_model extends CI_Model
 	{
 
 		// $result = $this->db->query(" SELECT * FROM ci_voting_counter  JOIN ci_voting
-  //                           ON ci_voting_counter.v_voting_id = ci_voting.dv_id
-  //                           WHERE dv_id=$id ")->result();
+       //ON ci_voting_counter.v_voting_id = ci_voting.dv_id
+        //WHERE dv_id=$id ")->result();
 		
 		
 		$total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
@@ -215,17 +215,7 @@ class Voting_counter_model extends CI_Model
 		$query = $this->db->get();
 
 		$data['data']=$query->result();
-		// $query1 = $this->db->last_query();
 
-		// // $result = $result->result();
-
-		// $this->db->select('max(concat(round((100*(v_value))/'.$total.',0),"%")) as max_percentage,v_column')
-		// ->from('ci_voting_counter')
-		// ->join('ci_voting',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
-		// $this->db->where('dv_id', $id)
-		// ->order_by('v_value','desc');
-		// $query2 = $this->db->get();
-		// $data['max'] = $query2->result();
 		
 
 		return $data;

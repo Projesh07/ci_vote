@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="#"></a>
-    <ul class="nav navbar-nav">
+<!--     <ul class="nav navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
@@ -29,16 +29,16 @@
             <a class="nav-link" href="#">Videos</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url()?>biography/">Biography</a>
+            <a class="nav-link" href="#">Biography</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url()?>about/">About</a>
+            <a class="nav-link" href="#">About</a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
         </li>
-    </ul>
+    </ul> -->
 </nav>
 
 <div class="container">

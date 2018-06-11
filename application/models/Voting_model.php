@@ -183,32 +183,51 @@ function register(){
 
 
 
- public function report_data($value='')
+ public function report_data($id=111)
     {
 
 
-    // $total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
-
-    // $this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as data_percentage')
-    // ->from('ci_voting')
-    // ->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id");
-    // // ->join('voter_info',"voter_info.ci_votting_id = ci_voting.dv_id",'right');
-    // $this->db->where('dv_id', $id)
-    // ->order_by('v_value','desc');
-    // ->group_by('dv_id');
+      $total = '(select sum(v_value) from ci_voting_counter where v_voting_id='.$id.')';
 
 
-      // $total_male = '(select sum(sex) from votin where v_voting_id='.$id.')';
-      // $this->db->select('*,count() as data_percentage')
 
-    $total_female = $this->db->query(" SELECT count(sex) as total_female FROM votin  JOIN ci_voting_counter ON ci_voting_counter.votin_id = votin.Id
-                            WHERE sex='female' ")->result();
+    $this->db->select('*,concat(round((100*(v_value))/'.$total.',0),"%") as total_percentage,ci_voting_counter.v_value as total_vote,ci_voting_counter.v_male as total_m_vote,ci_voting_counter.v_female as total_f_vote,ci_voting_counter.v_others as total_o_vote,')
+    ->from('ci_voting')
+    // ->join('voter_info',"voter_info.ci_votting_id = ci_voting.dv_id")
+    ->join('ci_voting_counter',"ci_voting_counter.v_voting_id = ci_voting.dv_id")
 
-    var_dump($total_female);die;
+    ->join('vote_state_count',"vote_state_count.v_voting_id = ci_voting.dv_id");
 
-    // $query = $this->db->get();
+    $this->db->where('dv_id', $id)
+    ->order_by('v_value','desc');
 
-    // $data['data']=$query->result();
+
+    $query = $this->db->get();
+
+
+    $data['table_one']=$query->result();
+
+
+
+    $total_male = '(select sum(v_male) from vote_state_count where v_voting_id='.$id.')';
+
+    $total_female = '(select sum(v_female) from vote_state_count where v_voting_id='.$id.')';
+
+    $total_others = '(select sum(v_others) from vote_state_count where v_voting_id='.$id.')';
+
+    $this->db->select('*,concat(round((100*(v_male))/'.$total_male.',0),"%") as male_percentage,concat(round((100*(v_female))/'.$total_male.',0),"%") as female_percentage,concat(round((100*(v_others))/'.$total_male.',0),"%") as female_percentage')
+    ->from('vote_state_count');
+
+    $this->db->where('v_voting_id', $id);
+
+    $query = $this->db->get();
+
+    $data['table_two']=$query->result(); 
+
+    // var_dump($data);die; 
+
+    return $data;
+
     }   
 
 }

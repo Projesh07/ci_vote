@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "admin_voting/register";
+$route['default_controller'] = "front_page/register";
 // $route['default_controller'] = "welcome";
 $route['scaffolding_trigger'] = "";
 
@@ -55,5 +55,8 @@ $route['404_override'] = '';
 $route['admin'] = "admin_voting/index";
 
 $route['print'] = "admin_voting/print_report";
+
+$route['biography'] = "front_page/biography";
+$route['about'] = "front_page/about";
 
 
